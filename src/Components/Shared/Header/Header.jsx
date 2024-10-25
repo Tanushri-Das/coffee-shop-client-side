@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutUser } from "../../redux/features/auth/authSlice";
-import { auth } from "../../Firebase/Firebase.config"; 
+import { auth } from "../../../Firebase/Firebase.config"; 
 import { signOut } from "firebase/auth";
 import { Link, NavLink } from "react-router-dom";
-import Button from "../../Components/Button/Button";
 import { FaBars, FaXmark } from "react-icons/fa6";
+import { logoutUser } from "../../../redux/features/auth/authSlice";
+import Button from "../../Button/Button";
 
 const Header = () => {
   const dispatch = useDispatch();

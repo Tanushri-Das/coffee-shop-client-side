@@ -1,6 +1,6 @@
 import React from 'react'
-import Header from '../Shared/Header/Header'
 import { Outlet } from 'react-router-dom'
+import Header from '../Components/Shared/Header/Header'
 
 const Main = () => {
   return (
