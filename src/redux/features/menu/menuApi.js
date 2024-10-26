@@ -1,17 +1,14 @@
 import baseApi from "../../api/baseApi";
 
-// Define the menu API using the base API
 const menuApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getMenu: builder.query({
-      query: () => "menu", // Endpoint for fetching menu items
+      query: () => "menu", 
     }),
   }),
-  overrideExisting: false, // Optional: prevents overwriting existing endpoints
+  overrideExisting: false, 
 });
 
-// Export the auto-generated hook for the `getMenu` query
 export const { useGetMenuQuery } = menuApi;
 
-// Export the menu API for use in the store
 export default menuApi;
