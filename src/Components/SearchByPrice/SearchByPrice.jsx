@@ -14,7 +14,9 @@ const SearchByPrice = ({ onPriceChange, onClear }) => {
   };
   return (
     <>
-      <h1 className="text-xl font-semibold mb-4">Search by Price :</h1>
+      <h1 className="text-xl text-center font-semibold mb-4">
+        Search by Price{" "}
+      </h1>
       <div className="flex items-center">
         <select
           id="priceRange"
