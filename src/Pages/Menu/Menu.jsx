@@ -268,6 +268,7 @@ import Pagination from "./Pagination";
 import "react-tabs/style/react-tabs.css";
 import SearchByPrice from "../../Components/SearchByPrice/SearchByPrice";
 import SearchBar from "../../Components/SearchBar/SearchBar";
+import MenuCard from "../../Components/MenuCard/MenuCard";
 
 const Menu = () => {
   const { data: menuItems, error, isLoading } = useGetMenuQuery();
@@ -397,34 +398,7 @@ const Menu = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 md:gap-6 lg:gap-8 w-full justify-items-center">
                 {paginatedItems(filteredItemsByCategory[category]).map(
                   (item) => (
-                    <div
-                      key={item._id}
-                      className="bg-[#F3F3F3] w-full h-full flex flex-col justify-between"
-                    >
-                      <div className="relative w-full h-56">
-                        <img
-                          className="w-full h-full object-cover object-center"
-                          src={item.image}
-                          alt={item.item_name}
-                        />
-                        <h4 className="absolute top-2 right-2 bg-black text-white text-[20px] font-medium mb-3 px-2 py-1">
-                          ${item.price}
-                        </h4>
-                      </div>
-                      <div className="p-4 flex flex-col justify-between items-center">
-                        <h2 className="text-[24px] font-semibold mb-2">
-                          {item.item_name}
-                        </h2>
-                        <div className="flex justify-center mt-4">
-                          <button className="bg-[#E8E8E8] text-[#BB8506] border-b-2 border-[#BB8506] px-5 py-2 text-lg font-medium">
-                            Add to Cart
-                          </button>
-                          <button className="bg-[#E8E8E8] ms-3 text-[#BB8506] border-b-2 border-[#BB8506] px-5 py-2 text-lg font-medium">
-                            Add to Wishlist
-                          </button>
-                        </div>
-                      </div>
-                    </div>
+                    <MenuCard item={item} />
                   )
                 )}
               </div>

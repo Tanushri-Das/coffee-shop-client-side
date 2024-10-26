@@ -5,19 +5,19 @@ const cartApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     addToCart: builder.mutation({
       query: (item) => ({
-        url: 'cart', // Adjust this to your actual endpoint
-        method: 'POST',
+        url: "carts", // Adjust this to your actual endpoint
+        method: "POST",
         body: item,
       }),
     }),
     removeFromCart: builder.mutation({
       query: (itemId) => ({
         url: `cart/${itemId}`, // Adjust this to your actual endpoint
-        method: 'DELETE',
+        method: "DELETE",
       }),
     }),
     fetchCart: builder.query({
-      query: () => 'cart', // Endpoint for fetching the cart items
+      query: () => "cart", // Endpoint for fetching the cart items
     }),
   }),
 });
