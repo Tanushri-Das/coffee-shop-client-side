@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { useGetMenuQuery } from "../../redux/features/menu/menuApi";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import Pagination from "./Pagination"; // Import Pagination component
 import "react-tabs/style/react-tabs.css";
 
-const MenuComponent = () => {
+const Menu = () => {
   const { data: menuItems, error, isLoading } = useGetMenuQuery();
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
-  // Filter items by category
+  // Categories for tabs
   const categories = [
     "coffee",
     "sandwich",
@@ -18,11 +21,22 @@ const MenuComponent = () => {
     "burger",
     "dessert",
   ];
+
+  // Filter items by category
   const filteredItemsByCategory = categories.reduce((acc, category) => {
-    acc[category] =
-      menuItems?.filter((item) => item.category === category) || [];
+    acc[category] = menuItems?.filter((item) => item.category === category) || [];
     return acc;
   }, {});
+
+  // Pagination logic: Calculate paginated items for each category
+  const paginatedItems = (categoryItems) => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return categoryItems.slice(startIndex, endIndex);
+  };
+
+  // Handle page change for pagination
+  const handlePageChange = (newPage) => setCurrentPage(newPage);
 
   return (
     <div className="m-2 lg:m-12">
@@ -40,11 +54,12 @@ const MenuComponent = () => {
             </Tab>
           ))}
         </TabList>
+
         <>
           {categories.map((category) => (
             <TabPanel key={category}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4 md:gap-6 lg:gap-8 w-full justify-items-center">
-                {filteredItemsByCategory[category].map((item) => (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 md:gap-6 lg:gap-8 w-full justify-items-center">
+                {paginatedItems(filteredItemsByCategory[category]).map((item) => (
                   <div
                     key={item._id}
                     className="bg-[#F3F3F3] w-full h-full flex flex-col justify-between"
@@ -75,6 +90,13 @@ const MenuComponent = () => {
                   </div>
                 ))}
               </div>
+              <Pagination
+                currentPage={currentPage}
+                totalItems={filteredItemsByCategory[category].length}
+                itemsPerPage={itemsPerPage}
+                onPageChange={handlePageChange}
+                isSmallScreen={window.innerWidth <= 667}
+              />
             </TabPanel>
           ))}
         </>
@@ -83,4 +105,4 @@ const MenuComponent = () => {
   );
 };
 
-export default MenuComponent;
+export default Menu;
