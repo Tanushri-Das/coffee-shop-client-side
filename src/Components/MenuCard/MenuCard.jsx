@@ -3,17 +3,35 @@ import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import BookingModal from "../BookingModal/BookingModal";
+import { useGetCartdataByEmailQuery } from "../../redux/features/cart/cartApi";
 
 const MenuCard = ({ item }) => {
   const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
   const location = useLocation();
+  const { data: cartData } = useGetCartdataByEmailQuery(user?.email);
+  console.log("MenuCard", cartData);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleAddToCartClick = () => {
+  // Fix conflict by renaming the variable inside `some`
+  const isInCart = cartData?.some(
+    (cartItem) => cartItem.productId === item._id
+  );
+
+  const handleAddToCart = () => {
     if (user && user.email) {
-      setIsModalOpen(true);
+      if (isInCart) {
+        Swal.fire({
+          title: "Already in Cart",
+          text: "This item is already in your cart.",
+          icon: "info",
+          timer: 1500,
+          showConfirmButton: false,
+        });
+      } else {
+        setIsModalOpen(true);
+      }
     } else {
       Swal.fire({
         title: "Please login to order the food",
@@ -53,7 +71,7 @@ const MenuCard = ({ item }) => {
         <h2 className="text-[24px] font-semibold mb-2">{item.item_name}</h2>
         <div className="flex justify-center mt-4">
           <button
-            onClick={handleAddToCartClick}
+            onClick={handleAddToCart}
             className="bg-[#E8E8E8] text-[#BB8506] border-b-2 border-[#BB8506] px-5 py-2 text-lg font-medium"
           >
             Add to Cart
