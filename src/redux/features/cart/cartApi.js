@@ -1,23 +1,29 @@
-// src/redux/features/cart/cartApi.js
 import baseApi from "../../api/baseApi";
 
 const cartApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     addToCart: builder.mutation({
       query: (item) => ({
-        url: "carts", // Adjust this to your actual endpoint
+        url: "carts",
         method: "POST",
         body: item,
       }),
     }),
     removeFromCart: builder.mutation({
       query: (itemId) => ({
-        url: `cart/${itemId}`, // Adjust this to your actual endpoint
+        url: `carts/${itemId}`,
         method: "DELETE",
       }),
     }),
-    fetchCart: builder.query({
-      query: () => "cart", // Endpoint for fetching the cart items
+    getCartdataByEmail: builder.query({
+      query: (email) => `/carts?email=${email}`,
+    }),
+    updateCartQuantity: builder.mutation({
+      query: ({ id, quantity }) => ({
+        url: `carts/${id}`,
+        method: "PATCH",
+        body: { quantity },
+      }),
     }),
   }),
 });
@@ -25,7 +31,8 @@ const cartApi = baseApi.injectEndpoints({
 export const {
   useAddToCartMutation,
   useRemoveFromCartMutation,
-  useFetchCartQuery,
+  useGetCartdataByEmailQuery,
+  useUpdateCartQuantityMutation,
 } = cartApi;
 
 export default cartApi;

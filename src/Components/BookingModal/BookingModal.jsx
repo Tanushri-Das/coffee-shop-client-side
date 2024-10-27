@@ -1,4 +1,3 @@
-// BookingModal.js
 import React, { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import PhoneInput from "react-phone-input-2";
