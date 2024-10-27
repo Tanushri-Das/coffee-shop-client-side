@@ -142,11 +142,12 @@ const MyCart = () => {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap flex justify-center font-medium">
                       <img
+                        alt="team"
+                        className="w-12 h-12 xl:w-20 xl:h-20 bg-gray-100 object-cover rounded-full"
                         src={booking.image}
-                        alt=""
-                        className="w-24 h-24 rounded-full"
                       />
                     </td>
+
                     <td className="px-6 py-4 whitespace-nowrap text-black text-[16px] font-medium">
                       {booking.item_name}
                     </td>
@@ -195,7 +196,7 @@ const MyCart = () => {
               </tbody>
             </table>
           </div>
-          {/* Total Amount */}
+
           <div className="flex justify-center mt-6">
             <h2 className="text-xl font-bold">
               Total Amount : ${totalAmount.toFixed(2)}
@@ -214,8 +215,7 @@ const MyCart = () => {
           booking={selectedBooking}
           refetch={refetch}
         />
-      )}{" "}
-      {/* Pass the selected booking */}
+      )}
     </div>
   );
 };
