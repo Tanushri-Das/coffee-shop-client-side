@@ -4,14 +4,17 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import BookingModal from "../BookingModal/BookingModal";
 import { useGetCartdataByEmailQuery } from "../../redux/features/cart/cartApi";
-import { useAddToWishlistMutation } from "../../redux/features/wishlist/wishlistApi";
+import {
+  useAddToWishlistMutation,
+  useGetWishlistdataByEmailQuery,
+} from "../../redux/features/wishlist/wishlistApi";
 
 const MenuCard = ({ item }) => {
   const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
   const location = useLocation();
   const { data: cartData } = useGetCartdataByEmailQuery(user?.email);
-  console.log("MenuCard", cartData);
+  const { refetch } = useGetWishlistdataByEmailQuery(user?.email);
   const [addToWishlist] = useAddToWishlistMutation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -67,6 +70,7 @@ const MenuCard = ({ item }) => {
       addToWishlist(newWishlist)
         .unwrap()
         .then(() => {
+          refetch();
           Swal.fire({
             position: "top-end",
             icon: "success",
