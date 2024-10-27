@@ -14,7 +14,6 @@ const MenuCard = ({ item }) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Fix conflict by renaming the variable inside `some`
   const isInCart = cartData?.some(
     (cartItem) => cartItem.productId === item._id
   );

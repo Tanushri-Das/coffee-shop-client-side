@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Swal from "sweetalert2";
 import {
   useGetCartdataByEmailQuery,
   useRemoveFromCartMutation,
-  useUpdateCartQuantityMutation,
+  useUpdateCartMutation,
 } from "../../redux/features/cart/cartApi";
 import { useSelector } from "react-redux";
 import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
 import { GoPlusCircle } from "react-icons/go";
 import { FiMinusCircle } from "react-icons/fi";
+import EditCartModal from "../../Components/EditCartModal/EditCartModal";
 
 const MyCart = () => {
   const user = useSelector((state) => state.auth.user);
@@ -19,7 +20,9 @@ const MyCart = () => {
     refetch,
   } = useGetCartdataByEmailQuery(user?.email);
   const [removeFromCart] = useRemoveFromCartMutation();
-  const [updateCartQuantity] = useUpdateCartQuantityMutation();
+  const [updateCart] = useUpdateCartMutation();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedBooking, setSelectedBooking] = useState(null); // State for the selected booking
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading cart data</div>;
@@ -50,27 +53,43 @@ const MyCart = () => {
   };
 
   const handleIncrease = async (booking) => {
-    await updateCartQuantity({
+    await updateCart({
       id: booking._id,
       quantity: booking.quantity + 1,
+      address: booking.address, // Pass address
+      phone: booking.phone, // Pass phone
+      countryCode: booking.countryCode, // Pass countryCode
     });
     refetch(); // Refetch data after quantity increase
   };
 
   const handleDecrease = async (booking) => {
     if (booking.quantity > 1) {
-      await updateCartQuantity({
+      await updateCart({
         id: booking._id,
         quantity: booking.quantity - 1,
+        address: booking.address, // Pass address
+        phone: booking.phone, // Pass phone
+        countryCode: booking.countryCode, // Pass countryCode
       });
       refetch(); // Refetch data after quantity decrease
     }
+  };
+
+  const handleEdit = (booking) => {
+    setSelectedBooking(booking); // Set the selected booking to state
+    setIsModalOpen(true); // Open the edit modal
   };
 
   // Calculate the total amount
   const totalAmount = cartData?.reduce((total, booking) => {
     return total + booking.price * booking.quantity;
   }, 0);
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedBooking(null); // Reset selected booking
+  };
 
   return (
     <div className="m-12">
@@ -157,7 +176,10 @@ const MyCart = () => {
                     </td>
                     <td>
                       <div className="flex justify-center items-center">
-                        <button className="bg-green-500 text-white px-4 py-3 rounded-lg hover:bg-green-700">
+                        <button
+                          onClick={() => handleEdit(booking)} // Call handleEdit when clicked
+                          className="bg-green-500 text-white px-4 py-3 rounded-lg hover:bg-green-700"
+                        >
                           <FaPencilAlt />
                         </button>
                         <button
@@ -185,6 +207,15 @@ const MyCart = () => {
           <p className="text-xl text-black font-semibold">No cart found</p>
         </div>
       )}
+      {/* Modal */}
+      {isModalOpen && (
+        <EditCartModal
+          closeModal={closeModal}
+          booking={selectedBooking}
+          refetch={refetch}
+        />
+      )}{" "}
+      {/* Pass the selected booking */}
     </div>
   );
 };

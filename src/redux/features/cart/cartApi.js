@@ -18,11 +18,11 @@ const cartApi = baseApi.injectEndpoints({
     getCartdataByEmail: builder.query({
       query: (email) => `/carts?email=${email}`,
     }),
-    updateCartQuantity: builder.mutation({
-      query: ({ id, quantity }) => ({
+    updateCart: builder.mutation({
+      query: ({ id, quantity, address, phone, countryCode }) => ({
         url: `carts/${id}`,
         method: "PATCH",
-        body: { quantity },
+        body: { quantity, address, phone, countryCode },
       }),
     }),
   }),
@@ -32,7 +32,7 @@ export const {
   useAddToCartMutation,
   useRemoveFromCartMutation,
   useGetCartdataByEmailQuery,
-  useUpdateCartQuantityMutation,
+  useUpdateCartMutation,
 } = cartApi;
 
 export default cartApi;
