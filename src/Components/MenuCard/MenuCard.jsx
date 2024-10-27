@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import BookingModal from "../BookingModal/BookingModal";
 import { useGetCartdataByEmailQuery } from "../../redux/features/cart/cartApi";
+import { useAddToWishlistMutation } from "../../redux/features/wishlist/wishlistApi";
 
 const MenuCard = ({ item }) => {
   const user = useSelector((state) => state.auth.user);
@@ -11,6 +12,7 @@ const MenuCard = ({ item }) => {
   const location = useLocation();
   const { data: cartData } = useGetCartdataByEmailQuery(user?.email);
   console.log("MenuCard", cartData);
+  const [addToWishlist] = useAddToWishlistMutation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -51,6 +53,53 @@ const MenuCard = ({ item }) => {
     setIsModalOpen(false);
   };
 
+  const handleAddToWishlist = () => {
+    if (user && user.email) {
+      const newWishlist = {
+        productId: item._id,
+        item_name: item.item_name,
+        price: item.price,
+        image: item.image,
+        quantity: 1,
+        username: user.name,
+        email: user.email,
+      };
+      addToWishlist(newWishlist)
+        .unwrap()
+        .then(() => {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Menu added to wishlist",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/myWishlist");
+        })
+        .catch((error) => {
+          console.error("Error placing wishlist:", error);
+          Swal.fire({
+            title: "Error!",
+            text: "Something went wrong. Please try again.",
+            icon: "error",
+            confirmButtonText: "Retry",
+          });
+        });
+    } else {
+      Swal.fire({
+        title: "Please login to add the item to your wishlist",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Login Now",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login", { state: { from: location } });
+        }
+      });
+    }
+  };
   return (
     <div
       key={item._id}
@@ -75,7 +124,10 @@ const MenuCard = ({ item }) => {
           >
             Add to Cart
           </button>
-          <button className="bg-[#E8E8E8] ms-3 text-[#BB8506] border-b-2 border-[#BB8506] px-5 py-2 text-lg font-medium">
+          <button
+            onClick={handleAddToWishlist}
+            className="bg-[#E8E8E8] ms-3 text-[#BB8506] border-b-2 border-[#BB8506] px-5 py-2 text-lg font-medium"
+          >
             Add to Wishlist
           </button>
         </div>

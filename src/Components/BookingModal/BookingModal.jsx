@@ -56,6 +56,12 @@ const BookingModal = ({ closeModal, item }) => {
       })
       .catch((error) => {
         console.error("Error placing order:", error);
+        Swal.fire({
+          title: "Error!",
+          text: "Something went wrong. Please try again.",
+          icon: "error",
+          confirmButtonText: "Retry",
+        });
       });
   };
 

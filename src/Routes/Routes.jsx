@@ -5,6 +5,7 @@ import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import Menu from "../Pages/Menu/Menu";
 import MyCart from "../Pages/MyCart/MyCart";
+import MyWishlist from "../Pages/MyWishlist/MyWishlist";
 
 const routes = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const routes = createBrowserRouter([
       {
         path: "/myCart",
         element: <MyCart />,
+      },
+      {
+        path: "/myWishlist",
+        element: <MyWishlist />,
       },
     ],
   },
