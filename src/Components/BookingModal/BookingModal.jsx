@@ -5,10 +5,11 @@ import "react-phone-input-2/lib/style.css";
 import { useSelector } from "react-redux";
 import { useAddToCartMutation } from "../../redux/features/cart/cartApi";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
-const BookingModal = ({ closeModal, item }) => {
+const BookingModal = ({ closeModal, item, cartRefetch }) => {
   const user = useSelector((state) => state.auth.user);
-
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: user?.name || "",
     email: user?.email || "",
@@ -53,6 +54,8 @@ const BookingModal = ({ closeModal, item }) => {
           timer: 1500,
         });
         closeModal(); // Use closeModal to close the modal
+        cartRefetch();
+        navigate("/dashboard/myCart");
       })
       .catch((error) => {
         console.error("Error placing order:", error);

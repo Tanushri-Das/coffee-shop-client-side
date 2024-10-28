@@ -1,0 +1,20 @@
+.recommend-item {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.slide-in {
+  opacity: 1; /* Fully visible */
+  transform: translateY(0); /* Reset position */
+}
+
+.slide-out {
+  opacity: 0; /* Start hidden */
+  transform: translateY(20px); /* Slide from below */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Transition for smooth effect */
+}
+
+/* Additional styles for better visibility */
+.grid {
+  overflow: hidden; /* Prevent overflow when items slide out */
+}

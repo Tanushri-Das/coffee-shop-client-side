@@ -45,7 +45,7 @@ const Categories = () => {
   }, []);
 
   return (
-    <section className="my-12">
+    <section className="m-12">
       <div className="text-center">
         <h1 className="text-4xl font-bold text-black mb-5">
           Explore Our{" "}

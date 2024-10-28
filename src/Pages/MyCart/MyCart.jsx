@@ -19,6 +19,7 @@ const MyCart = () => {
     isLoading,
     refetch,
   } = useGetCartdataByEmailQuery(user?.email);
+  console.log("MyCart", cartData);
   const [removeFromCart] = useRemoveFromCartMutation();
   const [updateCart] = useUpdateCartMutation();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -92,7 +93,7 @@ const MyCart = () => {
   };
 
   return (
-    <div className="m-12">
+    <div className="my-12">
       {cartData?.length > 0 ? (
         <>
           <h1 className="text-2xl sm:text-4xl font-bold flex justify-center items-center">

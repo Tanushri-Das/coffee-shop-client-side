@@ -13,8 +13,12 @@ const MenuCard = ({ item }) => {
   const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
   const location = useLocation();
-  const { data: cartData } = useGetCartdataByEmailQuery(user?.email);
-  const { refetch } = useGetWishlistdataByEmailQuery(user?.email);
+  const { data: cartData, refetch: cartRefetch } = useGetCartdataByEmailQuery(
+    user?.email
+  );
+  const { refetch: wishlistRefetch } = useGetWishlistdataByEmailQuery(
+    user?.email
+  );
   const [addToWishlist] = useAddToWishlistMutation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -70,7 +74,7 @@ const MenuCard = ({ item }) => {
       addToWishlist(newWishlist)
         .unwrap()
         .then(() => {
-          refetch();
+          wishlistRefetch();
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -78,7 +82,7 @@ const MenuCard = ({ item }) => {
             showConfirmButton: false,
             timer: 1500,
           });
-          navigate("/myWishlist");
+          navigate("/dashboard/myWishlist");
         })
         .catch((error) => {
           console.error("Error placing wishlist:", error);
@@ -107,11 +111,11 @@ const MenuCard = ({ item }) => {
   return (
     <div
       key={item._id}
-      className="bg-[#F3F3F3] w-full h-full flex flex-col justify-between"
+      className="bg-[#F3F3F3] w-full h-full flex flex-col justify-between px-3 pt-3"
     >
       <div className="relative w-full h-56">
         <img
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-center rounded-lg"
           src={item.image}
           alt={item.item_name}
         />
@@ -138,7 +142,13 @@ const MenuCard = ({ item }) => {
       </div>
 
       {/* Modal */}
-      {isModalOpen && <BookingModal closeModal={closeModal} item={item} />}
+      {isModalOpen && (
+        <BookingModal
+          closeModal={closeModal}
+          item={item}
+          cartRefetch={cartRefetch}
+        />
+      )}
     </div>
   );
 };
