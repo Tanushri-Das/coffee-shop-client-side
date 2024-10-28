@@ -1,49 +1,48 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { auth } from "./Firebase/Firebase.config"; // Firebase setup
 import { loginUser, setLoading } from "./redux/features/auth/authSlice";
-import { Outlet } from "react-router-dom";
-import { useGetUserByEmailQuery } from "./redux/features/auth/authApi"; // Assuming this exists to get user by email
+import { RouterProvider } from "react-router-dom";
+import routes from "./Routes/Routes/Routes";
+import { useGetUserByEmailQuery } from "./redux/features/auth/authApi"; 
 
 const App = () => {
   const dispatch = useDispatch();
+  const [userEmail, setUserEmail] = useState(null);
 
-  // Create a state variable to hold the user's email
-  const [userEmail, setUserEmail] = React.useState(null);
-
+  // Listen to Firebase auth state changes
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        // Set the user email for fetching user info
         setUserEmail(authUser.email);
-        dispatch(setLoading(false)); // Set loading to false after checking auth
+        dispatch(setLoading(false));
       } else {
-        dispatch(setLoading(false)); // Set loading to false if no user is authenticated
+        dispatch(setLoading(false));
       }
     });
 
-    return () => unsubscribe(); // Cleanup subscription on unmount
+    return () => unsubscribe();
   }, [dispatch]);
 
-  // Call the query hook outside of the effect
+  // Fetch user information using RTK Query
   const { data: userInfo } = useGetUserByEmailQuery(userEmail, {
-    skip: !userEmail, // Skip fetching if userEmail is not set
+    skip: !userEmail,
   });
 
+  // Update the Redux store with the user's information
   useEffect(() => {
     if (userInfo) {
-      // Dispatch user information to the Redux store
       dispatch(
         loginUser({
           uid: auth.currentUser.uid,
           email: auth.currentUser.email,
-          name: userInfo.name, // Store the name retrieved from the database
+          name: userInfo.name,
         })
       );
     }
   }, [dispatch, userInfo]);
 
-  return <Outlet />;
+  return <RouterProvider router={routes} />;
 };
 
 export default App;

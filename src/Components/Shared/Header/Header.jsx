@@ -78,7 +78,7 @@ const Header = () => {
                     Welcome, {user.name}
                   </h1>
                   <div className="flex justify-center">
-                    <Button onClick={handleLogout} name={"Logout"}/>
+                    <Button onClick={handleLogout} name={"Sign Out"}/>
                   </div>
                 </>
               ) : (

@@ -1,0 +1,9 @@
+.orders {
+  background: linear-gradient(90deg, #6aaeff 0%, #b6f7ff 100%);
+}
+.menu {
+  background: linear-gradient(90deg, #bb34f5 0%, #fcdbff 100%);
+}
+.wishlist {
+  background: linear-gradient(90deg, #d3a256 0%, #fde8c0 100%);
+}
