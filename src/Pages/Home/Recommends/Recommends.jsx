@@ -19,38 +19,47 @@ const Recommends = () => {
     setVisibleCount(showAll ? 6 : recommendItems.length); // Adjust the count based on current state
   };
 
-  if (isLoading) return <CustomSpinner />;
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <div className="m-12">
+    <div className="mb-12 mx-3 md:mx-12 xl:mx-20">
       <h1 className="text-4xl font-bold text-black mb-10 text-center">
         Chef{" "}
         <span className="heading relative inline-block mt-4 sm:mt-0 px-8 py-3 text-white font-bold">
           Recommends
         </span>
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {recommendItems?.slice(0, visibleCount).map((item) => (
-          <Recommend key={item.id} item={item} /> // Ensure each item has a unique key
-        ))}
-        {/* For the "See More" functionality, the additional items will get the animation */}
-        {showAll &&
-          recommendItems?.slice(visibleCount).map((item) => (
-            <div
-              key={item.id}
-              className={`recommend-item ${showAll ? "slide-in" : "slide-out"}`}
-            >
-              <Recommend item={item} />
+      <>
+        {isLoading ? (
+          <CustomSpinner />
+        ) : (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {recommendItems?.slice(0, visibleCount).map((item) => (
+                <Recommend key={item.id} item={item} /> // Ensure each item has a unique key
+              ))}
+              {/* For the "See More" functionality, the additional items will get the animation */}
+              {showAll &&
+                recommendItems?.slice(visibleCount).map((item) => (
+                  <div
+                    key={item.id}
+                    className={`recommend-item ${
+                      showAll ? "slide-in" : "slide-out"
+                    }`}
+                  >
+                    <Recommend item={item} />
+                  </div>
+                ))}
             </div>
-          ))}
-      </div>
-      <div className="flex justify-center mt-5">
-        <Button
-          onClick={handleToggle}
-          name={showAll ? "See Less" : "See More"}
-        />
-      </div>
+            <div className="flex justify-center mt-5">
+              <Button
+                onClick={handleToggle}
+                name={showAll ? "See Less" : "See More"}
+              />
+            </div>
+          </>
+        )}
+      </>
     </div>
   );
 };
