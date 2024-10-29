@@ -23,7 +23,7 @@ const Recommends = () => {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <div className="mb-20 mx-3 md:mx-12 xl:mx-20 relative">
+    <div className="m-12">
       <h1 className="text-4xl font-bold text-black mb-10 text-center">
         Chef{" "}
         <span className="heading relative inline-block mt-4 sm:mt-0 px-8 py-3 text-white font-bold">
