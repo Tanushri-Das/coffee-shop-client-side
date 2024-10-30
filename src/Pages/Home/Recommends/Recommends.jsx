@@ -23,7 +23,7 @@ const Recommends = () => {
 
   return (
     <div className="mb-12 mx-3 md:mx-12 xl:mx-20">
-      <h1 className="text-4xl font-bold text-black mb-10 text-center">
+      <h1 className="text-4xl font-bold mb-5 text-center">
         Chef{" "}
         <span className="heading relative inline-block mt-4 sm:mt-0 px-8 py-3 text-white font-bold">
           Recommends

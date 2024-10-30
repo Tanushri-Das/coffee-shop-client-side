@@ -43,7 +43,7 @@ const Categories = () => {
 
   return (
     <section className="mb-12 mx-3 md:mx-12 xl:mx-20">
-      <h1 className="text-4xl font-bold text-black mb-10 text-center">
+      <h1 className="text-4xl font-bold mb-5 text-center">
         Our{" "}
         <span className="heading relative inline-block mt-4 sm:mt-0 px-8 py-2 text-white font-bold">
           Categories
@@ -71,7 +71,7 @@ const Categories = () => {
                     alt={category.title}
                     className="h-36 mx-auto"
                   />
-                  <h3 className="text-2xl font-semibold text-black mt-2">
+                  <h3 className="text-2xl font-semibold mt-2">
                     {category.category_name}
                   </h3>
                 </div>

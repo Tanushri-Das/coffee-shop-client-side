@@ -7,10 +7,12 @@ import wishlistApi from "./features/wishlist/wishlistApi";
 import reviewsApi from "./features/reviews/reviewsApi";
 import categoriesApi from "./features/categories/categoriesApi";
 import featuresApi from "./features/features/featuresApi";
+import themeReducer from "./features/theme/themeSlice";
 
 const store = configureStore({
   reducer: {
     auth: authReducer,
+    theme: themeReducer,
     [baseApi.reducerPath]: baseApi.reducer,
     [menuApi.reducerPath]: menuApi.reducer,
     [cartApi.reducerPath]: cartApi.reducer,
@@ -23,10 +25,11 @@ const store = configureStore({
     getDefaultMiddleware().concat(
       baseApi.middleware,
       menuApi.middleware,
+      cartApi.middleware,
       wishlistApi.middleware,
       reviewsApi.middleware,
       categoriesApi.middleware,
-      featuresApi.middleware,
+      featuresApi.middleware
     ),
 });
 

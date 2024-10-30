@@ -39,7 +39,7 @@ const Testimonials = () => {
 
   return (
     <div className="mb-12 mx-3 md:mx-12 xl:mx-20 relative">
-      <h1 className="text-4xl font-bold text-black mb-10 text-center">
+      <h1 className="text-4xl font-bold mb-5 text-center">
         Customer's{" "}
         <span className="heading relative inline-block px-8 py-2 mt-4 sm:mt-0 text-white font-bold">
           Review
@@ -62,7 +62,7 @@ const Testimonials = () => {
                 disableOnInteraction: false,
               }}
               modules={[Navigation, Autoplay]}
-              className="mySwiper mt-10 h-80 relative"
+              className="mySwiper h-80 relative"
             >
               {reviews.map((review, index) => (
                 <SwiperSlide key={index} style={{ height: "100%" }}>
@@ -73,7 +73,7 @@ const Testimonials = () => {
                         alt={review.name}
                         className="w-20 h-20 rounded-full mb-4"
                       />
-                      <h3 className="text-[#737373] text-[16px] mb-6 font-medium">
+                      <h3 className="text-[16px] mb-6 font-medium">
                         {review.review}
                       </h3>
                       <h1 className="text-xl font-semibold mb-3">

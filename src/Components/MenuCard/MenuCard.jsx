@@ -124,7 +124,7 @@ const MenuCard = ({ item }) => {
         </h4>
       </div>
       <div className="p-4 flex flex-col justify-between items-center">
-        <h2 className="text-[24px] font-semibold mb-2">{item.item_name}</h2>
+        <h2 className="text-[24px] font-semibold mb-2 text-black">{item.item_name}</h2>
         <div className="flex justify-center mt-4">
           <button
             onClick={handleAddToCart}
