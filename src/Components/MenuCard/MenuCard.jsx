@@ -13,12 +13,8 @@ const MenuCard = ({ item }) => {
   const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
   const location = useLocation();
-  const { data: cartData, refetch: cartRefetch } = useGetCartdataByEmailQuery(
-    user?.email
-  );
-  const { refetch: wishlistRefetch } = useGetWishlistdataByEmailQuery(
-    user?.email
-  );
+  const { data: cartData } = useGetCartdataByEmailQuery(user?.email);
+  const { refetch } = useGetWishlistdataByEmailQuery(user?.email);
   const [addToWishlist] = useAddToWishlistMutation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -74,7 +70,7 @@ const MenuCard = ({ item }) => {
       addToWishlist(newWishlist)
         .unwrap()
         .then(() => {
-          wishlistRefetch();
+          refetch();
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -124,7 +120,9 @@ const MenuCard = ({ item }) => {
         </h4>
       </div>
       <div className="p-4 flex flex-col justify-between items-center">
-        <h2 className="text-[24px] font-semibold mb-2 text-black">{item.item_name}</h2>
+        <h2 className="text-[24px] font-semibold mb-2 text-black">
+          {item.item_name}
+        </h2>
         <div className="flex justify-center mt-4">
           <button
             onClick={handleAddToCart}
@@ -141,12 +139,10 @@ const MenuCard = ({ item }) => {
         </div>
       </div>
 
-      {/* Modal */}
       {isModalOpen && (
         <BookingModal
           closeModal={closeModal}
           item={item}
-          cartRefetch={cartRefetch}
         />
       )}
     </div>

@@ -206,7 +206,7 @@ const MyCart = () => {
         </>
       ) : (
         <div className="flex justify-center items-center mt-8">
-          <p className="text-xl text-black font-semibold">No cart found</p>
+          <p className="text-xl font-semibold">No cart found</p>
         </div>
       )}
       {/* Modal */}

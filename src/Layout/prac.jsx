@@ -1,30 +1,34 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Sidebar from "../Components/Sidebar/Sidebar";
-import { useSelector } from "react-redux";
 import Header from "../Components/Shared/Header/Header";
+import Sidebar from "../Components/Sidebar/Sidebar";
 import Footer from "../Components/Shared/Footer/Footer";
+import useTheme from "../Hooks/useTheme";
 
 const DashboardLayout = () => {
-  const darkMode = useSelector((state) => state.theme.darkMode);
+  const { isDarkMode } = useTheme();
   return (
     <div
       className={`flex flex-col h-60 ${
-        darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
+        isDarkMode
+          ? "bg-dark-background text-dark-text"
+          : "bg-light-background text-light-text"
       }`}
     >
       <Header />
       <div className="flex flex-1">
         <Sidebar />
         <main
-          className={`flex-1 p-6 bg-gray-100 overflow-auto ${
-            darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
+          className={`flex-1 p-2 sm:p-4 lg:p-6 overflow-auto ${
+            isDarkMode
+              ? "bg-dark-background text-dark-text"
+              : "bg-light-background text-light-text"
           }`}
         >
           <Outlet />
         </main>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

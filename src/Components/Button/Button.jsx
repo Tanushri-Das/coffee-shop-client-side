@@ -6,7 +6,7 @@ const Button = ({ name, onClick }) => {
       <button
         type="submit"
         onClick={onClick}
-        className="bg-[#6F4E37] text-lg text-white px-6 py-[10px] rounded-md font-semibold"
+        className="bg-[#6F4E37] text-lg text-white px-6 py-2 rounded-md font-semibold"
       >
         {name}
       </button>

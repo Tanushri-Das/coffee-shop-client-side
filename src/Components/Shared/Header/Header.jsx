@@ -1,20 +1,19 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { auth } from "../../../Firebase/Firebase.config";
-import { signOut } from "firebase/auth";
 import { Link, NavLink } from "react-router-dom";
 import { FaBars, FaXmark } from "react-icons/fa6";
-import { logoutUser } from "../../../redux/features/auth/authSlice";
 import Button from "../../Button/Button";
 import { FaRegMoon } from "react-icons/fa";
 import { IoSunnyOutline } from "react-icons/io5";
 import { toggleDarkMode } from "../../../redux/features/theme/themeSlice";
+import useSignOut from "../../../hooks/useSignOut";
 
 const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const darkMode = useSelector((state) => state.theme.darkMode);
   const [isOpen, setIsOpen] = useState(false);
+  const handleSignOut = useSignOut();
 
   const toggleDrawer = () => {
     setIsOpen((prev) => !prev);
@@ -22,11 +21,7 @@ const Header = () => {
   const closeDrawer = () => {
     setIsOpen(false);
   };
-  const handleLogout = () => {
-    signOut(auth).then(() => {
-      dispatch(logoutUser());
-    });
-  };
+
   const handleThemeToggle = () => {
     dispatch(toggleDarkMode());
   };
@@ -95,7 +90,7 @@ const Header = () => {
                   <h1 className="text-lg font-semibold">
                     Welcome, {user.name}
                   </h1>
-                  <Button onClick={handleLogout} name="Sign Out" />
+                  <Button onClick={handleSignOut} name="Sign Out" />
                 </>
               ) : (
                 <Link to="/login">
@@ -186,7 +181,7 @@ const Header = () => {
                     <h1 className="text-lg font-semibold mb-5">
                       {user.displayName}
                     </h1>
-                    <Button onClick={handleLogout} name="Logout" />
+                    <Button onClick={handleSignOut} name="Logout" />
                   </>
                 ) : (
                   <Link to="/login">

@@ -10,7 +10,7 @@
   color: #6F4E37;
   position: absolute;
   left: -15px;
-  top: 50%;
+  top: calc(50% - 25px);
   transform: translateY(-50%);
   z-index: 2;
   cursor: pointer;
@@ -28,6 +28,7 @@
   position: absolute;
   right: -15px;
   top: calc(50% - 25px);
+  transform: translateY(-50%);
   z-index: 2;
   cursor: pointer;
 }
