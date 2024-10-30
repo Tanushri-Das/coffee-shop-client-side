@@ -9,7 +9,7 @@ import Button from "../../Button/Button";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.user); // Access user from Redux store
+  const user = useSelector((state) => state.auth.user);
   console.log("name", user?.name);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -27,7 +27,7 @@ const Header = () => {
 
   return (
     <nav className="border-b-[1px]">
-      <div className="px-8 lg:px-12 py-4 flex items-center justify-between">
+      <div className="px-8 lg:px-12 xl:px-20 py-4 flex items-center justify-between">
         <div className="text-lg font-bold md:flex-grow-0">
           <Link to="/">
             <div className="flex justify-center items-center">
