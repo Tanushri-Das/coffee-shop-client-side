@@ -14,13 +14,18 @@ const MenuCard = ({ item }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { data: cartData } = useGetCartdataByEmailQuery(user?.email);
-  const { refetch } = useGetWishlistdataByEmailQuery(user?.email);
+  const { data: wishlistData, refetch } = useGetWishlistdataByEmailQuery(
+    user?.email
+  );
   const [addToWishlist] = useAddToWishlistMutation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const isInCart = cartData?.some(
     (cartItem) => cartItem.productId === item._id
+  );
+  const isInWishlist = wishlistData?.some(
+    (wishlistItem) => wishlistItem.productId === item._id
   );
 
   const handleAddToCart = () => {
@@ -58,37 +63,47 @@ const MenuCard = ({ item }) => {
 
   const handleAddToWishlist = () => {
     if (user && user.email) {
-      const newWishlist = {
-        productId: item._id,
-        item_name: item.item_name,
-        price: item.price,
-        image: item.image,
-        quantity: 1,
-        username: user.name,
-        email: user.email,
-      };
-      addToWishlist(newWishlist)
-        .unwrap()
-        .then(() => {
-          refetch();
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Menu added to wishlist",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          navigate("/dashboard/myWishlist");
-        })
-        .catch((error) => {
-          console.error("Error placing wishlist:", error);
-          Swal.fire({
-            title: "Error!",
-            text: "Something went wrong. Please try again.",
-            icon: "error",
-            confirmButtonText: "Retry",
-          });
+      if (isInWishlist) {
+        Swal.fire({
+          title: "Already in Wishlist",
+          text: "This item is already in your wishlist.",
+          icon: "info",
+          timer: 1500,
+          showConfirmButton: false,
         });
+      } else {
+        const newWishlist = {
+          productId: item._id,
+          item_name: item.item_name,
+          price: item.price,
+          image: item.image,
+          quantity: 1,
+          username: user.name,
+          email: user.email,
+        };
+        addToWishlist(newWishlist)
+          .unwrap()
+          .then(() => {
+            refetch();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Menu added to wishlist",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            navigate("/dashboard/myWishlist");
+          })
+          .catch((error) => {
+            console.error("Error placing wishlist:", error);
+            Swal.fire({
+              title: "Error!",
+              text: "Something went wrong. Please try again.",
+              icon: "error",
+              confirmButtonText: "Retry",
+            });
+          });
+      }
     } else {
       Swal.fire({
         title: "Please login to add the item to your wishlist",
@@ -139,12 +154,7 @@ const MenuCard = ({ item }) => {
         </div>
       </div>
 
-      {isModalOpen && (
-        <BookingModal
-          closeModal={closeModal}
-          item={item}
-        />
-      )}
+      {isModalOpen && <BookingModal closeModal={closeModal} item={item} />}
     </div>
   );
 };
