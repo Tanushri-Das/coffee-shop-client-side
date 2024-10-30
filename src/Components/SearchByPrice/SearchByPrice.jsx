@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 const SearchByPrice = ({ onPriceChange, onClear }) => {
   const [selectedPriceRange, setSelectedPriceRange] = useState("");
+  const darkMode = useSelector((state) => state.theme.darkMode);
 
   const handlePriceChange = (event) => {
     const selectedValue = event.target.value;
@@ -14,15 +16,23 @@ const SearchByPrice = ({ onPriceChange, onClear }) => {
   };
   return (
     <>
-      <h1 className="text-xl text-center font-semibold mb-4">
-        Search by Price{" "}
+      <h1
+        className={`text-xl font-semibold mb-3 text-center ${
+          darkMode ? "text-white" : "text-black"
+        }`}
+      >
+        Search by Price
       </h1>
       <div className="flex items-center">
         <select
           id="priceRange"
           value={selectedPriceRange}
           onChange={handlePriceChange}
-          className="block w-full p-2 border border-gray-300 rounded"
+          className={`block w-full p-2 border rounded cursor-pointer ${
+            darkMode
+              ? "bg-gray-700 text-white border-gray-500"
+              : "bg-white text-black border-gray-300"
+          }`}
         >
           <option value="">Select a price range</option>
           <option value="0-50">0-50</option>
@@ -31,7 +41,11 @@ const SearchByPrice = ({ onPriceChange, onClear }) => {
         </select>
         <button
           onClick={handleReset}
-          className="ml-2 2xl:ml-4 px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors"
+          className={`ml-2 2xl:ml-4 px-4 py-2 rounded-md transition-colors ${
+            darkMode
+              ? "bg-gray-600 text-white hover:bg-gray-700"
+              : "bg-gray-500 text-white hover:bg-gray-600"
+          }`}
         >
           Reset
         </button>

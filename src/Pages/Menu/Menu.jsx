@@ -357,8 +357,8 @@ const Menu = () => {
   };
 
   return (
-    <div className="m-2 my-12 lg:m-12">
-      <div className="w-full max-w-lg mx-auto mb-4">
+    <div className="mb-12 mx-3 md:mx-12 my-12">
+      <div className="w-full max-w-lg mx-auto mb-5">
         <SearchBar
           searchTerm={searchTerm}
           handleSearch={(e) => handleSearch(e.target.value)}
@@ -368,7 +368,7 @@ const Menu = () => {
           <p className="text-center text-red-500">{searchMessage}</p>
         )}
       </div>
-      <div className="flex justify-center mb-6">
+      <div className="flex justify-center mb-9">
         <div className="w-full max-w-lg">
           <SearchByPrice
             onPriceChange={handlePriceChange}
@@ -380,7 +380,7 @@ const Menu = () => {
         selectedIndex={categories.indexOf(activeTab)}
         onSelect={(index) => setActiveTab(categories[index])}
       >
-        <TabList className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-4 md:gap-6 lg:gap-8 justify-center items-center mb-8">
+        <TabList className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-4 md:gap-6 lg:gap-8 justify-center items-center mb-5">
           {categories.map((category) => (
             <Tab
               key={category}

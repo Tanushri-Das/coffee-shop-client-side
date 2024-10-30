@@ -111,7 +111,7 @@ const MenuCard = ({ item }) => {
   return (
     <div
       key={item._id}
-      className="bg-[#F3F3F3] w-full h-full flex flex-col justify-between px-3 pt-3"
+      className="bg-[#F3F3F3] w-full h-full flex flex-col justify-between rounded-xl px-3 pt-3"
     >
       <div className="relative w-full h-56">
         <img
