@@ -1,13 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useGetMenuQuery } from "../../redux/features/menu/menuApi";
+import { useGetMenuQuery } from "../../../redux/features/menu/menuApi";
 import { FaBell, FaUtensils } from "react-icons/fa6";
 import { FaShoppingBasket } from "react-icons/fa";
-import { useGetCartdataByEmailQuery } from "../../redux/features/cart/cartApi";
-import { useGetWishlistdataByEmailQuery } from "../../redux/features/wishlist/wishlistApi";
+import { useGetCartdataByEmailQuery } from "../../../redux/features/cart/cartApi";
+import { useGetWishlistdataByEmailQuery } from "../../../redux/features/wishlist/wishlistApi";
 import "./Dashboard.css";
-import PieChart from "../../Components/PieChart/PieChart";
-import LineChart from "../../Components/LineChart/LineChart";
+import PieChart from "../../../Components/PieChart/PieChart";
+import LineChart from "../../../Components/LineChart/LineChart";
 
 const Dashboard = () => {
   const user = useSelector((state) => state.auth.user);

@@ -6,9 +6,10 @@ import SignUp from "../../Pages/SignUp/SignUp";
 import Menu from "../../Pages/Menu/Menu";
 import MyCart from "../../Pages/MyCart/MyCart";
 import MyWishlist from "../../Pages/MyWishlist/MyWishlist";
-import Dashboard from "../../Pages/Dashboard/Dashboard";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 import DashboardLayout from "../../Layout/DashboardLayout";
+import AddReview from "../../Pages/Dashboard/AddReview/AddReview";
+import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 
 const routes = createBrowserRouter([
   {
@@ -49,6 +50,11 @@ const routes = createBrowserRouter([
         path: "/dashboard/myWishlist",
         element: <MyWishlist />, 
       },
+      {
+        path: "/dashboard/addReview",
+        element: <AddReview />, 
+      },
+      
     ],
   },
 ]);

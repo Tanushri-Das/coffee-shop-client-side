@@ -5,10 +5,17 @@ const reviewsApi = baseApi.injectEndpoints({
     getReviews: builder.query({
       query: () => "reviews",
     }),
+    addReview: builder.mutation({
+      query: (review) => ({
+        url: "reviews",
+        method: "POST",
+        body: review,
+      }),
+    }),
   }),
   overrideExisting: false,
 });
 
-export const { useGetReviewsQuery } = reviewsApi;
+export const { useGetReviewsQuery, useAddReviewMutation } = reviewsApi;
 
 export default reviewsApi;

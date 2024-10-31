@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 .heading {
-    background-color: #6F4E37;
-    clip-path: polygon(100% 0, 93% 50%, 100% 100%, 0 100%, 7% 50%, 0 0);
-  }
+  background-color: #6f4e37;
+  clip-path: polygon(100% 0, 93% 50%, 100% 100%, 0 100%, 7% 50%, 0 0);
+}
+textarea {
+  resize: none;
+}

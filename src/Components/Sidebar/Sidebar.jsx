@@ -5,6 +5,7 @@ import { FaBell, FaUtensils } from "react-icons/fa6";
 import logo from "../../assets/logo.png";
 import { PiSignOutBold } from "react-icons/pi";
 import useSignOut from "../../hooks/useSignOut";
+import { MdReviews } from "react-icons/md";
 
 const Sidebar = () => {
   const handleSignOut = useSignOut();
@@ -60,6 +61,19 @@ const Sidebar = () => {
           <FaBell className="text-xl" />
           <span className="ml-3 hidden md:block text-[16px] font-medium">
             My Wishlist
+          </span>
+        </NavLink>
+        <NavLink
+          to="/dashboard/addReview"
+          className={({ isActive }) =>
+            `flex items-center p-4 hover:bg-gray-700 ${
+              isActive ? "bg-gray-700" : ""
+            }`
+          }
+        >
+          <MdReviews className="text-xl" />
+          <span className="ml-3 hidden md:block text-[16px] font-medium">
+            Add Review
           </span>
         </NavLink>
         <NavLink

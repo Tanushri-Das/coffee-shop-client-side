@@ -10,7 +10,7 @@ import "./ContactUs.css";
 const ContactUs = () => {
   const { register, handleSubmit, reset } = useForm();
   const [addToContact] = useAddToContactMutation();
-  const [phoneNumber, setPhoneNumber] = useState("+880"); // Default country code without number
+  const [phoneNumber, setPhoneNumber] = useState("+880");
 
   const onSubmit = async (data) => {
     // Extract country code and phone number separately
@@ -27,7 +27,7 @@ const ContactUs = () => {
       };
       await addToContact(newContact).unwrap();
       reset();
-      setPhoneNumber("+880"); // Reset to default country code
+      setPhoneNumber("+880");
       Swal.fire({
         position: "top-end",
         icon: "success",
@@ -73,7 +73,7 @@ const ContactUs = () => {
           </div>
           <div>
             <PhoneInput
-              country="bd" // Set default to Bangladesh
+              country="bd"
               value={phoneNumber}
               onChange={setPhoneNumber}
               inputProps={{
