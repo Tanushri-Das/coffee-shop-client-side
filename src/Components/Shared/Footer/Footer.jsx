@@ -9,6 +9,7 @@ import {
   FaLocationDot,
   FaPhone,
 } from "react-icons/fa6";
+import logo from "../../../assets/logo.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -17,11 +18,20 @@ const Footer = () => {
     <div className="bg-[#F5F5F8] text-base-content px-8 lg:px-12 xl:px-20 py-10">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-8 text-center sm:text-left">
         <div className="flex flex-col items-center sm:items-start xl:mb-8">
-          <Link to="/">
-            <h1 className="text-xl lg:text-2xl font-bold italic text-[#6F4E37] tracking-wide transition-all duration-300 ease-in-out hover:scale-105">
-              Sip Coffee
-            </h1>
-          </Link>
+          <div className="text-lg font-bold md:flex-grow-0">
+            <Link to="/">
+              <div className="flex items-center">
+                <img
+                  src={logo}
+                  alt=""
+                  className="w-[60px] h-[60px] hidden md:block"
+                />
+                <h2 className="text-xl lg:text-2xl font-semibold italic">
+                  Sip Coffee
+                </h2>
+              </div>
+            </Link>
+          </div>
           <p className="w-full max-w-[300px] text-black text-[16px] font-normal my-4">
             Sip Coffee – crafted with passion, served with care.
           </p>
@@ -42,13 +52,22 @@ const Footer = () => {
         </div>
         <div className="xl:mb-8">
           <h6 className="text-xl text-black font-semibold mb-5">Support</h6>
-          <Link to="/menu" className="text-[16px] text-black font-normal block mb-2">
+          <Link
+            to="/menu"
+            className="text-[16px] text-black font-normal block mb-2"
+          >
             Menu
           </Link>
-          <Link to="/" className="text-[16px] text-black font-normal block mb-2">
+          <Link
+            to="/"
+            className="text-[16px] text-black font-normal block mb-2"
+          >
             Help & Support
           </Link>
-          <Link to="/" className="text-[16px] text-black font-normal block mb-2">
+          <Link
+            to="/"
+            className="text-[16px] text-black font-normal block mb-2"
+          >
             Return Policy
           </Link>
           <Link to="/" className="text-[16px] text-black font-normal block">
@@ -57,13 +76,22 @@ const Footer = () => {
         </div>
         <div className="mb-0 sm:mb-8 lg:mb-0 xl:mb-8">
           <h6 className="text-xl font-semibold text-black mb-5">View Guides</h6>
-          <Link to="/" className="text-[16px] text-black font-normal block mb-2">
+          <Link
+            to="/"
+            className="text-[16px] text-black font-normal block mb-2"
+          >
             Features
           </Link>
-          <Link to="/" className="text-[16px] text-black font-normal block mb-2">
+          <Link
+            to="/"
+            className="text-[16px] text-black font-normal block mb-2"
+          >
             Careers
           </Link>
-          <Link to="/" className="text-[16px] text-black font-normal block mb-2">
+          <Link
+            to="/"
+            className="text-[16px] text-black font-normal block mb-2"
+          >
             Blog Posts
           </Link>
           <Link to="/" className="text-[16px] text-black font-normal block">
