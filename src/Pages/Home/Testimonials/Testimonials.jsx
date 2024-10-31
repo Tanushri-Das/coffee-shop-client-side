@@ -9,10 +9,11 @@ import { FaStar, FaStarHalf } from "react-icons/fa";
 import "./Testimonials.css";
 import { useGetReviewsQuery } from "../../../redux/features/reviews/reviewsApi";
 import CustomSpinner from "../../../Components/CustomSpinner/CustomSpinner";
+import { useSelector } from "react-redux";
 
 const Testimonials = () => {
   const { data: reviews, error, isLoading } = useGetReviewsQuery();
-
+  const darkMode = useSelector((state) => state.theme.darkMode);
   const [swiperSlidesPerView, setSwiperSlidesPerView] = useState(1);
 
   useEffect(() => {
@@ -100,7 +101,9 @@ const Testimonials = () => {
             </Swiper>
             <div className="swiper-button-prev-container flex items-center justify-center">
               <div className="swiper-button-prev">
-                <FiChevronLeft />
+                <FiChevronLeft
+                  className={`${darkMode ? "text-white" : "text-[#6F4E37]"}`}
+                />
               </div>
             </div>
             <div className="swiper-button-next-container flex items-center justify-center">

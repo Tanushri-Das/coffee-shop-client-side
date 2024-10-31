@@ -60,7 +60,7 @@ const SocialLogin = () => {
         className="flex items-center py-4 border border-gray-500 rounded-full"
         style={{ padding: "8px" }}
       >
-        <div className="flex items-center justify-center bg-white rounded-full p-2">
+        <div className="flex items-center justify-center text-black rounded-full p-2">
           <FaGoogle />
         </div>
       </button>

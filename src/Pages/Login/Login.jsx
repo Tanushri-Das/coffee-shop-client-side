@@ -23,7 +23,7 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
     watch,
-  } = useForm(); 
+  } = useForm();
   const email = watch("email"); // Get the value of the email input
 
   const togglePasswordVisibility = () => {
@@ -142,7 +142,7 @@ const Login = () => {
           </div>
           <p className="text-center text-[16px] text-black font-medium mt-2">
             Don’t have an account?
-            <Link to="/signup" className="text-[#ff7800] ms-1">
+            <Link to="/signup" className="text-[#6F4E37] ms-1">
               Signup
             </Link>
           </p>

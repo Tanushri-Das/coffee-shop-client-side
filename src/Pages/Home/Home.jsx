@@ -5,6 +5,7 @@ import Recommends from "./Recommends/Recommends";
 import Features from "./Features/Features";
 import Testimonials from "./Testimonials/Testimonials";
 import { useSelector } from "react-redux";
+import PoweredBy from "./PoweredBy/PoweredBy";
 
 const Home = () => {
   const darkMode = useSelector((state) => state.theme.darkMode);
@@ -18,6 +19,7 @@ const Home = () => {
       <Categories />
       <Recommends />
       <Features />
+      <PoweredBy/>
       <Testimonials />
     </div>
   );
