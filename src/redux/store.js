@@ -9,6 +9,7 @@ import categoriesApi from "./features/categories/categoriesApi";
 import featuresApi from "./features/features/featuresApi";
 import themeReducer from "./features/theme/themeSlice";
 import sponsorsApi from "./features/sponsors/sponsorsApi";
+import contactApi from "./features/contact/contactApi";
 
 const store = configureStore({
   reducer: {
@@ -22,6 +23,7 @@ const store = configureStore({
     [categoriesApi.reducerPath]: categoriesApi.reducer,
     [featuresApi.reducerPath]: featuresApi.reducer,
     [sponsorsApi.reducerPath]: sponsorsApi.reducer,
+    [contactApi.reducerPath]: contactApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
@@ -32,7 +34,8 @@ const store = configureStore({
       reviewsApi.middleware,
       categoriesApi.middleware,
       featuresApi.middleware,
-      sponsorsApi.middleware
+      sponsorsApi.middleware,
+      contactApi.middleware
     ),
 });
 

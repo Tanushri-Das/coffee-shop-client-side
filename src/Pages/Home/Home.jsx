@@ -6,6 +6,7 @@ import Features from "./Features/Features";
 import Testimonials from "./Testimonials/Testimonials";
 import { useSelector } from "react-redux";
 import PoweredBy from "./PoweredBy/PoweredBy";
+import ContactUs from "./ContactUs/ContactUs";
 
 const Home = () => {
   const darkMode = useSelector((state) => state.theme.darkMode);
@@ -21,6 +22,7 @@ const Home = () => {
       <Features />
       <PoweredBy/>
       <Testimonials />
+      <ContactUs/>
     </div>
   );
 };

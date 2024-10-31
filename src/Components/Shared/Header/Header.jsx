@@ -7,6 +7,7 @@ import { FaRegMoon } from "react-icons/fa";
 import { IoSunnyOutline } from "react-icons/io5";
 import { toggleDarkMode } from "../../../redux/features/theme/themeSlice";
 import useSignOut from "../../../hooks/useSignOut";
+import logo from "../../../assets/logo.png";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -35,7 +36,14 @@ const Header = () => {
       <div className="px-8 lg:px-12 xl:px-20 py-4 flex items-center justify-between">
         <div className="text-lg font-bold md:flex-grow-0">
           <Link to="/">
-            <h2 className="text-2xl xl:text-3xl font-semibold">Sip Coffee</h2>
+            <div className="flex justify-center items-center">
+              <img
+                src={logo}
+                alt=""
+                className="w-[60px] h-[60px] hidden md:block"
+              />
+              <h2 className="text-2xl xl:text-3xl font-semibold italic">Sip Coffee</h2>
+            </div>
           </Link>
         </div>
         <div className="flex items-center">
