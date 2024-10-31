@@ -1,94 +1,10 @@
-// import React, { useEffect, useState } from "react";
-// import { AiOutlineClose } from "react-icons/ai";
-// import PhoneInput from "react-phone-input-2";
-// import "react-phone-input-2/lib/style.css";
-
-// const EditCartModal = ({ closeModal, booking }) => {
-//   console.log(booking);
-//   const [formData, setFormData] = useState({
-//     address: "",
-//     phone: "",
-//     countryCode: "",
-//   });
-//   const [phoneNumber, setPhoneNumber] = useState("");
-
-//   useEffect(() => {
-//     if (booking) {
-//       setFormData({
-//         address: booking.address || "",
-//         phone: booking.phone || "",
-//         countryCode: booking.countryCode || "",
-//       });
-//       setPhoneNumber(`${booking.countryCode}${booking.phone}`);
-//     }
-//   }, [booking]);
-
-//   const handleChange = (value) => {
-//     setPhoneNumber(value);
-//   };
-
-//   return (
-//     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-//       <div className="relative bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl">
-//         <button
-//           className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
-//           onClick={closeModal}
-//         >
-//           <AiOutlineClose size={20} />
-//         </button>
-//         <h3 className="font-semibold text-black text-xl">
-//           {booking.item_name}
-//         </h3>
-//         <div className="mt-3">
-//           <form>
-//             <input
-//               type="text"
-//               placeholder="Address"
-//               name="address"
-//               value={formData.address}
-//               className="border text-black border-gray-300 rounded-lg w-full mb-2 text-[16px] p-3 font-medium outline-none"
-//             />
-//             <div>
-//               <PhoneInput
-//                 country={"bd"}
-//                 value={phoneNumber}
-//                 onChange={handleChange}
-//                 inputProps={{
-//                   className:
-//                     "border border-gray-300 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 rounded-md w-full ps-12 py-2 outline-none",
-//                 }}
-//               />
-//             </div>
-//             <div className="flex justify-end mt-6">
-//               <button
-//                 type="submit"
-//                 className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
-//               >
-//                 Submit
-//               </button>
-//               <button
-//                 type="button"
-//                 onClick={closeModal}
-//                 className="bg-gray-300 text-gray-700 px-4 py-2 rounded"
-//               >
-//                 Cancel
-//               </button>
-//             </div>
-//           </form>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default EditCartModal;
-
 import React, { useEffect, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { useUpdateCartMutation } from "../../redux/features/cart/cartApi";
 import Swal from "sweetalert2";
+import Button from "../Button/Button";
 
 const EditCartModal = ({ closeModal, booking, refetch }) => {
   const [formData, setFormData] = useState({
@@ -163,17 +79,17 @@ const EditCartModal = ({ closeModal, booking, refetch }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-      <div className="relative bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl">
+      <div className="relative bg-white p-8 rounded-lg shadow-lg w-full max-w-xl">
         <button
-          className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+          className="absolute top-4 right-2 text-gray-500 hover:text-gray-700"
           onClick={closeModal}
         >
-          <AiOutlineClose size={20} />
+          <AiOutlineClose size={26} />
         </button>
-        <h3 className="font-semibold text-black text-xl">
-          {booking.item_name}
-        </h3>
-        <div className="mt-3">
+        <div className="mt-5">
+          <h3 className="font-semibold text-black text-xl mb-5">
+            {booking.item_name}
+          </h3>
           <form onSubmit={handleUpdate}>
             <input
               type="text"
@@ -190,21 +106,16 @@ const EditCartModal = ({ closeModal, booking, refetch }) => {
                 onChange={handleChange}
                 inputProps={{
                   className:
-                    "border border-gray-300 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 rounded-md w-full ps-12 py-2 outline-none",
+                    "border text-black border-gray-300 rounded-lg w-full ps-12 py-3 outline-none"
                 }}
               />
             </div>
-            <div className="flex justify-end mt-6">
-              <button
-                type="submit"
-                className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
-              >
-                Submit
-              </button>
+            <div className="flex justify-center gap-x-4 mt-4">
+              <Button name={"Submit"} />
               <button
                 type="button"
                 onClick={closeModal}
-                className="bg-gray-300 text-gray-700 px-4 py-2 rounded"
+                className="bg-gray-300 text-gray-700 text-lg px-6 py-2 rounded-md font-semibold"
               >
                 Cancel
               </button>

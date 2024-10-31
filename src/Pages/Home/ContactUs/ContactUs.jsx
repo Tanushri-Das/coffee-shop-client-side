@@ -48,7 +48,7 @@ const ContactUs = () => {
 
   return (
     <div className="mb-12 mx-3 md:mx-12 xl:mx-20 py-12 contact">
-      <div className="w-full flex-shrink-0 sm:max-w-lg mx-auto px-2 sm:p-0">
+      <div className="w-full flex-shrink-0 sm:max-w-xl mx-auto px-2 sm:p-0">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="space-y-4 max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md"

@@ -3,9 +3,13 @@ import { AiOutlineClose } from "react-icons/ai";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { useSelector } from "react-redux";
-import { useAddToCartMutation, useGetCartdataByEmailQuery } from "../../redux/features/cart/cartApi";
+import {
+  useAddToCartMutation,
+  useGetCartdataByEmailQuery,
+} from "../../redux/features/cart/cartApi";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import Button from "../Button/Button";
 
 const BookingModal = ({ closeModal, item }) => {
   const user = useSelector((state) => state.auth.user);
@@ -71,15 +75,15 @@ const BookingModal = ({ closeModal, item }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-      <div className="relative bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl">
+      <div className="relative bg-white p-8 rounded-lg shadow-lg w-full max-w-xl">
         <button
-          className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+          className="absolute top-4 right-2 text-gray-500 hover:text-gray-700"
           onClick={closeModal}
         >
-          <AiOutlineClose size={20} />
+          <AiOutlineClose size={26} />
         </button>
-        <h3 className="font-semibold text-black text-xl">{item.item_name}</h3>
-        <div className="mt-3">
+        <div className="mt-5">
+          <h3 className="font-semibold text-black text-xl mb-5">{item.item_name}</h3>
           <form onSubmit={handleSubmit}>
             <input
               type="text"
@@ -116,17 +120,12 @@ const BookingModal = ({ closeModal, item }) => {
                 }}
               />
             </div>
-            <div className="flex justify-end mt-6">
-              <button
-                type="submit"
-                className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
-              >
-                Submit
-              </button>
+            <div className="flex justify-center gap-x-4 mt-4">
+              <Button name={"Submit"} />
               <button
                 type="button"
                 onClick={closeModal}
-                className="bg-gray-300 text-gray-700 px-4 py-2 rounded"
+                className="bg-gray-300 text-gray-700 text-lg px-6 py-2 rounded-md font-semibold"
               >
                 Cancel
               </button>
