@@ -10,6 +10,7 @@ import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
 import { GoPlusCircle } from "react-icons/go";
 import { FiMinusCircle } from "react-icons/fi";
 import EditCartModal from "../../../Components/EditCartModal/EditCartModal";
+import { Helmet } from "react-helmet-async";
 
 const MyCart = () => {
   const user = useSelector((state) => state.auth.user);
@@ -93,130 +94,135 @@ const MyCart = () => {
   };
 
   return (
-    <div className="my-12">
-      {cartData?.length > 0 ? (
-        <>
-          <h1 className="text-2xl sm:text-4xl font-bold flex justify-center items-center">
-            My Cart : {cartData.length}
-          </h1>
-          <div className="mt-9 overflow-x-auto shadow-md sm:rounded-lg">
-            <table className="min-w-full font-light">
-              <thead className="bg-gray-700 text-gray-200">
-                <tr>
-                  <th scope="col" className="px-6 py-3">
-                    #
-                  </th>
-                  <th scope="col" className="text-lg text-center px-6 py-3">
-                    Name
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Image
-                  </th>
-                  <th scope="col" className="text-lg text-center px-6 py-3">
-                    Item Name
-                  </th>
-                  <th scope="col" className="text-lg text-center px-6 py-3">
-                    Price
-                  </th>
-                  <th scope="col" className="text-lg text-center px-6 py-3">
-                    Quantity
-                  </th>
-                  <th scope="col" className="text-lg text-center px-6 py-3">
-                    Phone
-                  </th>
-                  <th scope="col" className="text-lg text-center px-6 py-3">
-                    Address
-                  </th>
-                  <th scope="col" className="text-lg text-center px-6 py-3">
-                    Action
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200 text-center">
-                {cartData.map((booking, index) => (
-                  <tr key={index}>
-                    <td className="px-6 py-4 whitespace-nowrap text-black text-[16px] font-medium">
-                      {index + 1}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-black text-[16px] font-medium">
-                      {booking.username}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap flex justify-center font-medium">
-                      <img
-                        alt="team"
-                        className="w-12 h-12 xl:w-20 xl:h-20 bg-gray-100 object-cover rounded-full"
-                        src={booking.image}
-                      />
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-black text-[16px] font-medium">
-                      {booking.item_name}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-black text-[16px] font-medium">
-                      ${booking.price * booking.quantity}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-black text-[16px] font-medium">
-                      <div className="flex justify-center items-center">
-                        <FiMinusCircle
-                          onClick={() => handleDecrease(booking)}
-                          className="text-2xl hover:cursor-pointer"
-                        />
-                        <h2 className="ms-5 me-[22px] text-black text-[16px] font-medium">
-                          {booking.quantity}
-                        </h2>
-                        <GoPlusCircle
-                          onClick={() => handleIncrease(booking)}
-                          className="text-2xl hover:cursor-pointer"
-                        />
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-black text-[16px] font-medium">
-                      +{booking.countryCode}-{booking.phone}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-black text-[16px] font-medium">
-                      {booking.address}
-                    </td>
-                    <td>
-                      <div className="flex justify-center items-center">
-                        <button
-                          onClick={() => handleEdit(booking)} // Call handleEdit when clicked
-                          className="bg-green-500 text-white px-4 py-3 rounded-lg hover:bg-green-700"
-                        >
-                          <FaPencilAlt />
-                        </button>
-                        <button
-                          onClick={() => handleDelete(booking)}
-                          className="bg-red-500 text-white px-4 py-3 hover:bg-red-700 rounded-lg ms-2"
-                        >
-                          <FaTrashAlt className="text-lg" />
-                        </button>
-                      </div>
-                    </td>
+    <>
+      <Helmet>
+        <title>Sip Coffee | My Cart</title>
+      </Helmet>
+      <div className="my-12">
+        {cartData?.length > 0 ? (
+          <>
+            <h1 className="text-2xl sm:text-4xl font-bold flex justify-center items-center">
+              My Cart : {cartData.length}
+            </h1>
+            <div className="mt-9 overflow-x-auto shadow-md sm:rounded-lg">
+              <table className="min-w-full font-light">
+                <thead className="bg-gray-700 text-gray-200">
+                  <tr>
+                    <th scope="col" className="px-6 py-3">
+                      #
+                    </th>
+                    <th scope="col" className="text-lg text-center px-6 py-3">
+                      Name
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Image
+                    </th>
+                    <th scope="col" className="text-lg text-center px-6 py-3">
+                      Item Name
+                    </th>
+                    <th scope="col" className="text-lg text-center px-6 py-3">
+                      Price
+                    </th>
+                    <th scope="col" className="text-lg text-center px-6 py-3">
+                      Quantity
+                    </th>
+                    <th scope="col" className="text-lg text-center px-6 py-3">
+                      Phone
+                    </th>
+                    <th scope="col" className="text-lg text-center px-6 py-3">
+                      Address
+                    </th>
+                    <th scope="col" className="text-lg text-center px-6 py-3">
+                      Action
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200 text-center">
+                  {cartData.map((booking, index) => (
+                    <tr key={index}>
+                      <td className="px-6 py-4 whitespace-nowrap text-black text-[16px] font-medium">
+                        {index + 1}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-black text-[16px] font-medium">
+                        {booking.username}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap flex justify-center font-medium">
+                        <img
+                          alt="team"
+                          className="w-12 h-12 xl:w-20 xl:h-20 bg-gray-100 object-cover rounded-full"
+                          src={booking.image}
+                        />
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-black text-[16px] font-medium">
+                        {booking.item_name}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-black text-[16px] font-medium">
+                        ${booking.price * booking.quantity}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-black text-[16px] font-medium">
+                        <div className="flex justify-center items-center">
+                          <FiMinusCircle
+                            onClick={() => handleDecrease(booking)}
+                            className="text-2xl hover:cursor-pointer"
+                          />
+                          <h2 className="ms-5 me-[22px] text-black text-[16px] font-medium">
+                            {booking.quantity}
+                          </h2>
+                          <GoPlusCircle
+                            onClick={() => handleIncrease(booking)}
+                            className="text-2xl hover:cursor-pointer"
+                          />
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-black text-[16px] font-medium">
+                        +{booking.countryCode}-{booking.phone}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-black text-[16px] font-medium">
+                        {booking.address}
+                      </td>
+                      <td>
+                        <div className="flex justify-center items-center">
+                          <button
+                            onClick={() => handleEdit(booking)} // Call handleEdit when clicked
+                            className="bg-green-500 text-white px-4 py-3 rounded-lg hover:bg-green-700"
+                          >
+                            <FaPencilAlt />
+                          </button>
+                          <button
+                            onClick={() => handleDelete(booking)}
+                            className="bg-red-500 text-white px-4 py-3 hover:bg-red-700 rounded-lg ms-2"
+                          >
+                            <FaTrashAlt className="text-lg" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
 
-          <div className="flex justify-center mt-6">
-            <h2 className="text-xl font-bold">
-              Total Amount : ${totalAmount.toFixed(2)}
-            </h2>
+            <div className="flex justify-center mt-6">
+              <h2 className="text-xl font-bold">
+                Total Amount : ${totalAmount.toFixed(2)}
+              </h2>
+            </div>
+          </>
+        ) : (
+          <div className="flex justify-center items-center mt-8">
+            <p className="text-xl font-semibold">No cart found</p>
           </div>
-        </>
-      ) : (
-        <div className="flex justify-center items-center mt-8">
-          <p className="text-xl font-semibold">No cart found</p>
-        </div>
-      )}
-      {/* Modal */}
-      {isModalOpen && (
-        <EditCartModal
-          closeModal={closeModal}
-          booking={selectedBooking}
-          refetch={refetch}
-        />
-      )}
-    </div>
+        )}
+        {/* Modal */}
+        {isModalOpen && (
+          <EditCartModal
+            closeModal={closeModal}
+            booking={selectedBooking}
+            refetch={refetch}
+          />
+        )}
+      </div>
+    </>
   );
 };
 

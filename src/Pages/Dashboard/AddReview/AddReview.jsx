@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { useAddReviewMutation } from "../../../redux/features/reviews/reviewsApi";
 import Button from "../../../Components/Button/Button";
 import { useSelector } from "react-redux";
+import { Helmet } from "react-helmet-async";
 
 const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
 
@@ -59,6 +60,9 @@ const AddReview = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Sip Coffee | Add Review</title>
+      </Helmet>
       <div className="my-12">
         <h3 className="text-center text-4xl font-bold mb-6">Give Review</h3>
         <form

@@ -269,6 +269,7 @@ import "react-tabs/style/react-tabs.css";
 import SearchByPrice from "../../Components/SearchByPrice/SearchByPrice";
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import MenuCard from "../../Components/MenuCard/MenuCard";
+import { Helmet } from "react-helmet-async";
 
 const Menu = () => {
   const { data: menuItems, error, isLoading } = useGetMenuQuery();
@@ -357,71 +358,77 @@ const Menu = () => {
   };
 
   return (
-    <div className="mb-12 mx-3 md:mx-12 my-12">
-      <div className="w-full max-w-lg mx-auto mb-5">
-        <SearchBar
-          searchTerm={searchTerm}
-          handleSearch={(e) => handleSearch(e.target.value)}
-          handleClearSearch={handleClearSearch}
-        />
-        {searchMessage && (
-          <p className="text-center text-red-500">{searchMessage}</p>
-        )}
-      </div>
-      <div className="flex justify-center mb-9">
-        <div className="w-full max-w-lg">
-          <SearchByPrice
-            onPriceChange={handlePriceChange}
-            onClear={handleClear}
+    <>
+      <Helmet>
+        <title>Sip Coffee | Menu</title>
+      </Helmet>
+      <div className="mb-12 mx-3 md:mx-12 my-12">
+        <div className="w-full max-w-lg mx-auto mb-5">
+          <SearchBar
+            searchTerm={searchTerm}
+            handleSearch={(e) => handleSearch(e.target.value)}
+            handleClearSearch={handleClearSearch}
           />
+          {searchMessage && (
+            <p className="text-center text-red-500">{searchMessage}</p>
+          )}
         </div>
-      </div>
-      <Tabs
-        selectedIndex={categories.indexOf(activeTab)}
-        onSelect={(index) => setActiveTab(categories[index])}
-      >
-        <TabList className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-4 md:gap-6 lg:gap-8 justify-center items-center mb-5">
-          {categories.map((category) => (
-            <Tab
-              key={category}
-              className="px-4 py-2 cursor-pointer outline-none text-lg text-center"
-              selectedClassName="border-b-2 border-[#BB8506] font-bold"
-            >
-              {category.charAt(0).toUpperCase() + category.slice(1)}
-            </Tab>
-          ))}
-        </TabList>
+        <div className="flex justify-center mb-9">
+          <div className="w-full max-w-lg">
+            <SearchByPrice
+              onPriceChange={handlePriceChange}
+              onClear={handleClear}
+            />
+          </div>
+        </div>
+        <Tabs
+          selectedIndex={categories.indexOf(activeTab)}
+          onSelect={(index) => setActiveTab(categories[index])}
+        >
+          <TabList className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-4 md:gap-6 lg:gap-8 justify-center items-center mb-5">
+            {categories.map((category) => (
+              <Tab
+                key={category}
+                className="px-4 py-2 cursor-pointer outline-none text-lg text-center"
+                selectedClassName="border-b-2 border-[#BB8506] font-bold"
+              >
+                {category.charAt(0).toUpperCase() + category.slice(1)}
+              </Tab>
+            ))}
+          </TabList>
 
-        {categories.map((category) => (
-          <TabPanel key={category}>
-            {filteredItemsByCategory[category].length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 md:gap-6 lg:gap-8 w-full justify-items-center">
-                {paginatedItems(filteredItemsByCategory[category]).map(
-                  (item) => (
-                    <MenuCard item={item} />
-                  )
-                )}
-              </div>
-            ) : (
-              <div className="flex justify-center items-center h-48 w-full">
-                <h1 className="text-center text-xl font-semibold">
-                  No menu available in this price range for {category} category
-                </h1>
-              </div>
-            )}
-            {filteredItemsByCategory[category].length > 0 && (
-              <Pagination
-                currentPage={currentPage}
-                totalItems={filteredItemsByCategory[category].length}
-                itemsPerPage={itemsPerPage}
-                onPageChange={handlePageChange}
-                isSmallScreen={window.innerWidth <= 667}
-              />
-            )}
-          </TabPanel>
-        ))}
-      </Tabs>
-    </div>
+          {categories.map((category) => (
+            <TabPanel key={category}>
+              {filteredItemsByCategory[category].length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 md:gap-6 lg:gap-8 w-full justify-items-center">
+                  {paginatedItems(filteredItemsByCategory[category]).map(
+                    (item) => (
+                      <MenuCard item={item} />
+                    )
+                  )}
+                </div>
+              ) : (
+                <div className="flex justify-center items-center h-48 w-full">
+                  <h1 className="text-center text-xl font-semibold">
+                    No menu available in this price range for {category}{" "}
+                    category
+                  </h1>
+                </div>
+              )}
+              {filteredItemsByCategory[category].length > 0 && (
+                <Pagination
+                  currentPage={currentPage}
+                  totalItems={filteredItemsByCategory[category].length}
+                  itemsPerPage={itemsPerPage}
+                  onPageChange={handlePageChange}
+                  isSmallScreen={window.innerWidth <= 667}
+                />
+              )}
+            </TabPanel>
+          ))}
+        </Tabs>
+      </div>
+    </>
   );
 };
 
