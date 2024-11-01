@@ -19,7 +19,7 @@ const PoweredBy = () => {
         {isLoading ? (
           <CustomSpinner />
         ) : (
-          <div className="bg-gray-100 p-6 rounded-lg shadow-md text-center">
+          <div className="bg-[#F3F3F3] p-6 rounded-lg shadow-md text-center">
             <Marquee gradient={false} speed={60}>
               {sponsors.map((company, index) => (
                 <div

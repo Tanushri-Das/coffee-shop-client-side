@@ -3,11 +3,11 @@ import { useSelector } from "react-redux";
 import {
   useGetWishlistdataByEmailQuery,
   useRemoveFromWishlistMutation,
-} from "../../redux/features/wishlist/wishlistApi";
+} from "../../../redux/features/wishlist/wishlistApi";
 import { FaShoppingBag, FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
-import { useGetCartdataByEmailQuery } from "../../redux/features/cart/cartApi";
-import BookingModal from "../../Components/BookingModal/BookingModal";
+import { useGetCartdataByEmailQuery } from "../../../redux/features/cart/cartApi";
+import BookingModal from "../../../Components/BookingModal/BookingModal";
 
 const MyWishlist = () => {
   const user = useSelector((state) => state.auth.user);

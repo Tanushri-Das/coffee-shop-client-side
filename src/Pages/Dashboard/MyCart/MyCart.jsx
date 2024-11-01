@@ -4,12 +4,12 @@ import {
   useGetCartdataByEmailQuery,
   useRemoveFromCartMutation,
   useUpdateCartMutation,
-} from "../../redux/features/cart/cartApi";
+} from "../../../redux/features/cart/cartApi";
 import { useSelector } from "react-redux";
 import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
 import { GoPlusCircle } from "react-icons/go";
 import { FiMinusCircle } from "react-icons/fi";
-import EditCartModal from "../../Components/EditCartModal/EditCartModal";
+import EditCartModal from "../../../Components/EditCartModal/EditCartModal";
 
 const MyCart = () => {
   const user = useSelector((state) => state.auth.user);
@@ -148,7 +148,6 @@ const MyCart = () => {
                         src={booking.image}
                       />
                     </td>
-
                     <td className="px-6 py-4 whitespace-nowrap text-black text-[16px] font-medium">
                       {booking.item_name}
                     </td>

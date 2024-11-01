@@ -4,12 +4,12 @@ import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import SignUp from "../../Pages/SignUp/SignUp";
 import Menu from "../../Pages/Menu/Menu";
-import MyCart from "../../Pages/MyCart/MyCart";
-import MyWishlist from "../../Pages/MyWishlist/MyWishlist";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 import DashboardLayout from "../../Layout/DashboardLayout";
 import AddReview from "../../Pages/Dashboard/AddReview/AddReview";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
+import MyCart from "../../Pages/Dashboard/MyCart/MyCart";
+import MyWishlist from "../../Pages/Dashboard/MyWishlist/MyWishlist";
 
 const routes = createBrowserRouter([
   {

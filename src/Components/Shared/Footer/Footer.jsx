@@ -26,7 +26,7 @@ const Footer = () => {
                   alt=""
                   className="w-[60px] h-[60px] hidden md:block"
                 />
-                <h2 className="text-xl lg:text-2xl font-semibold italic">
+                <h2 className="text-xl text-black lg:text-2xl font-semibold italic">
                   Sip Coffee
                 </h2>
               </div>

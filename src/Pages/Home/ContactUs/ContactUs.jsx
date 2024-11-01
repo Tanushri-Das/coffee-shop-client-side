@@ -47,7 +47,7 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="mb-12 mx-3 md:mx-12 xl:mx-20 py-12 contact">
+    <div className="mb-12 mx-3 md:mx-12 xl:mx-20 py-16 contact">
       <div className="w-full flex-shrink-0 sm:max-w-xl mx-auto px-2 sm:p-0">
         <form
           onSubmit={handleSubmit(onSubmit)}

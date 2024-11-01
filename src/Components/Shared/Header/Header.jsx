@@ -40,7 +40,7 @@ const Header = () => {
               <img
                 src={logo}
                 alt=""
-                className="w-[60px] h-[60px] hidden md:block"
+                className="w-[60px] h-[60px]"
               />
               <h2 className="text-2xl xl:text-3xl font-semibold italic">Sip Coffee</h2>
             </div>
