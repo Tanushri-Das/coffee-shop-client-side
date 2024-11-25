@@ -29,20 +29,18 @@ const Header = () => {
 
   return (
     <nav
-      className={`border-b-[1px] ${
-        darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
+      className={`border-b-[1px] transition-colors ${
+        darkMode ? "bg-gray-800 text-white" : "bg-white text-black"
       }`}
     >
       <div className="px-8 lg:px-12 xl:px-20 py-4 flex items-center justify-between">
         <div className="text-lg font-bold md:flex-grow-0">
           <Link to="/">
             <div className="flex justify-center items-center">
-              <img
-                src={logo}
-                alt=""
-                className="w-[60px] h-[60px]"
-              />
-              <h2 className="text-2xl xl:text-3xl font-semibold italic">Sip Coffee</h2>
+              <img src={logo} alt="" className="w-[60px] h-[60px]" />
+              <h2 className="text-2xl xl:text-3xl font-semibold italic">
+                Sip Coffee
+              </h2>
             </div>
           </Link>
         </div>

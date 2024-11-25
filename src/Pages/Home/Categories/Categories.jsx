@@ -3,10 +3,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
 import { useGetCategoriesQuery } from "../../../redux/features/categories/categoriesApi";
-import CustomSpinner from "../../../Components/CustomSpinner/CustomSpinner";
 
 const Categories = () => {
-  const { data: categories, error, isLoading } = useGetCategoriesQuery();
+  const { data: categories } = useGetCategoriesQuery();
   const [swiperSlidesPerView, setSwiperSlidesPerView] = useState(1);
 
   useEffect(() => {
@@ -39,47 +38,39 @@ const Categories = () => {
     };
   }, []);
 
-  if (error) return <div>Error: {error.message}</div>;
-
   return (
     <section className="mb-12 mx-3 md:mx-12 xl:mx-20">
-      <h1 className="text-4xl font-bold mb-5 text-center">
+      <h1 className="text-4xl font-bold mb-9 text-center">
         Our{" "}
         <span className="heading relative inline-block mt-4 sm:mt-0 px-8 py-2 text-white font-bold">
           Categories
         </span>
       </h1>
-      <>
-        {isLoading ? (
-          <CustomSpinner />
-        ) : (
-          <Swiper
-            slidesPerView={swiperSlidesPerView}
-            spaceBetween={30}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
-            modules={[Autoplay]}
-            className="mySwiper"
-          >
-            {categories.map((category) => (
-              <SwiperSlide key={category.id}>
-                <div className="flex flex-col justify-center items-center border border-gray-200 rounded-xl h-full py-4">
-                  <img
-                    src={category.image}
-                    alt={category.title}
-                    className="h-36 mx-auto"
-                  />
-                  <h3 className="text-2xl font-semibold mt-2">
-                    {category.category_name}
-                  </h3>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        )}
-      </>
+      <Swiper
+        slidesPerView={swiperSlidesPerView}
+        spaceBetween={30}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        modules={[Autoplay]}
+        className="mySwiper"
+      >
+        {categories?.map((category) => (
+          <SwiperSlide key={category.id}>
+            <div className="flex flex-col justify-center items-center border border-gray-200 rounded-xl h-full py-4">
+              <img
+                src={category.image}
+                alt={category.title}
+                className="h-36 mx-auto"
+              />
+              <h3 className="text-2xl font-semibold mt-2">
+                {category.category_name}
+              </h3>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </section>
   );
 };

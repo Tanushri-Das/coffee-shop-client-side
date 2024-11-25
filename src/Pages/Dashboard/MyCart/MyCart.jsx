@@ -14,20 +14,12 @@ import { Helmet } from "react-helmet-async";
 
 const MyCart = () => {
   const user = useSelector((state) => state.auth.user);
-  const {
-    data: cartData,
-    error,
-    isLoading,
-    refetch,
-  } = useGetCartdataByEmailQuery(user?.email);
+  const { data: cartData, refetch } = useGetCartdataByEmailQuery(user?.email);
   console.log("MyCart", cartData);
   const [removeFromCart] = useRemoveFromCartMutation();
   const [updateCart] = useUpdateCartMutation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBooking, setSelectedBooking] = useState(null); // State for the selected booking
-
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error loading cart data</div>;
 
   const handleDelete = (booking) => {
     Swal.fire({

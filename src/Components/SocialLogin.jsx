@@ -2,11 +2,11 @@ import React from "react";
 import { FaGoogle } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { auth, provider } from "../../Firebase/Firebase.config"; // Ensure you have Firebase configured
+import { auth, provider } from "../Firebase/Firebase.config"; // Ensure you have Firebase configured
 import { useDispatch } from "react-redux";
-import { loginUser } from "../../redux/features/auth/authSlice"; // Import loginUser action
+import { loginUser } from "../redux/features/auth/authSlice"; // Import loginUser action
 import { signInWithPopup } from "firebase/auth"; // Import signInWithPopup
-import { useSaveUserMutation } from "../../redux/features/auth/authApi";
+import { useSaveUserMutation } from "../redux/features/auth/authApi";
 
 const SocialLogin = () => {
   const dispatch = useDispatch(); // Initialize Redux dispatch

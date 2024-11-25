@@ -272,16 +272,13 @@ import MenuCard from "../../Components/MenuCard/MenuCard";
 import { Helmet } from "react-helmet-async";
 
 const Menu = () => {
-  const { data: menuItems, error, isLoading } = useGetMenuQuery();
+  const { data: menuItems } = useGetMenuQuery();
   const [selectedPriceRange, setSelectedPriceRange] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [activeTab, setActiveTab] = useState("coffee");
   const [searchMessage, setSearchMessage] = useState("");
   const itemsPerPage = 6;
-
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
 
   const categories = [
     "coffee",

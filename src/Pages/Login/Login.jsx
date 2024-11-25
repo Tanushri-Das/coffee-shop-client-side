@@ -9,8 +9,8 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
-import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import { Helmet } from "react-helmet-async";
+import SocialLogin from "../../Components/SocialLogin";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
